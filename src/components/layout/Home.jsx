@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from '../Header/Header';
 import About from '../extra/About';
 import Services from '../extra/Services';
 import Contact from '../extra/Contact';
+import { DataProvider } from '../Providers/AuthProvider';
 
 const Home = () => {
     return (
