@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import registerLottie from "../../assets/lottie/112454-form-registration.json";
+import { DataProvider } from "../Providers/AuthProvider";
 
 const Register = () => {
+  const {registerWithEmail} = useContext(DataProvider);
+  // console.log(registerWithEmail);
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -21,6 +24,16 @@ const Register = () => {
     const password = form.password.value;
 
      console.log(email,password,name);
+
+    registerWithEmail(email,password)
+    .then(result => {
+      console.log(result.user);
+      form.reset();
+    })
+    .catch(error => {
+      console.log(error.message);
+    })
+
   };
   return (
     <div className="hero min-h-screen bg-base-200">
