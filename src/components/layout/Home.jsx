@@ -4,6 +4,7 @@ import About from '../extra/About';
 import Services from '../extra/Services';
 import Contact from '../extra/Contact';
 import { DataProvider } from '../Providers/AuthProvider';
+import MeetOutTeam from '../extra/MeetOutTeam';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <About></About>
             <Services></Services>
             <Contact></Contact>
+            <MeetOutTeam></MeetOutTeam>
         </div>
     );
 };
