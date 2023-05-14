@@ -5,6 +5,8 @@ import ErrorPage from '../extra/ErrorPage';
 import Home from '../layout/Home';
 import Login from '../login/Login';
 import Register from '../login/Register';
+import ServiceDetails from '../extra/ServiceDetails';
+import Checkout from '../extra/Checkout';
 
 const routes = createBrowserRouter([
     {
@@ -23,6 +25,16 @@ const routes = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register></Register>
+            },
+            {
+                path: 'survicedetails/:id',
+                element: <ServiceDetails></ServiceDetails>,
+                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+            },
+            {
+                path: 'checkout/:id',
+                element: <Checkout></Checkout>,
+                loader: ({params}) => fetch(`http://localhost:5000/services/${params.id}`)
             }
         ]
     }
