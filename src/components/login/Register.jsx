@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import registerLottie from "../../assets/lottie/112454-form-registration.json";
 import { DataProvider } from "../Providers/AuthProvider";
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2'
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
@@ -31,7 +31,13 @@ const Register = () => {
     .then(result => {
       console.log(result.user);
       form.reset();
-      toast('User Created Successfully')
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Successfully created new account',
+        showConfirmButton: false,
+        timer: 1500
+      })
 
     })
     .catch(error => {

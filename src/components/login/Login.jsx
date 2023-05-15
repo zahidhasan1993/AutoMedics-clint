@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import Lottie from "react-lottie";
 import loginLottie from "../../assets/lottie/142230-login.json";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 import { DataProvider } from "../Providers/AuthProvider";
-import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -28,7 +28,13 @@ const Login = () => {
     userSignIn(email,password)
     .then(result => {
       // console.log(result.user);
-      toast('Login Successful')
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Logged In Successful',
+        showConfirmButton: false,
+        timer: 1500
+      })
       form.reset()
 
 

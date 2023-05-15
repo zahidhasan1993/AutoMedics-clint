@@ -23,7 +23,7 @@ const ServiceDetails = () => {
         </div>
       </div>
       <div className="my-32">
-        <div className="card card-side bg-base-200 shadow-xl">
+        <div className="card md:card-side bg-base-200 shadow-xl">
           <figure>
             <img
               src={img}
@@ -31,7 +31,7 @@ const ServiceDetails = () => {
               className="rounded-lg"
             />
           </figure>
-          <div className="card-body w-1/2">
+          <div className="card-body md:w-1/2">
             <h2 className="card-title text-orange-700">{title}</h2>
             <p>{description}</p>
             <p className="text-orange-700">Price : ${price}</p>
