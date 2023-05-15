@@ -10,13 +10,12 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout()
-    .then()
-    .catch(err => {
-      console.log(err.message);
-    })
+      .then()
+      .catch((err) => {
+        console.log(err.message);
+      });
     // console.log('paise');
-  }
-
+  };
 
   return (
     <div className="navbar bg-base-100 mb-12 mt-8">
@@ -43,7 +42,7 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link to='/'>Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link>About</Link>
@@ -52,21 +51,28 @@ const Navbar = () => {
               <Link>Services</Link>
             </li>
             <li>
-              {user ? <Link onClick={handleLogout}>Logout</Link> : <Link to="/login">Login</Link>}
+              {user ? (
+                <>
+                  <Link onClick={handleLogout}>Logout</Link>
+                  <Link to="/orders">Orders</Link>
+                </>
+              ) : (
+                <Link to="/login">Login</Link>
+              )}
             </li>
             <li>
               <Link>Contact</Link>
             </li>
           </ul>
         </div>
-        <Link to='/' className="">
+        <Link to="/" className="">
           <img src={logo} alt="" className="w-44" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to='/'>Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <Link>About</Link>
@@ -74,7 +80,16 @@ const Navbar = () => {
           <li>
             <Link>Services</Link>
           </li>
-          <li>{user ? <Link onClick={handleLogout}>Logout</Link> : <Link to="/login">Login</Link>}</li>
+          <li>
+            {user ? (
+              <>
+                <Link onClick={handleLogout}>Logout</Link>
+                <Link to="/orders">Orders</Link>
+              </>
+            ) : (
+              <Link to="/login">Login</Link>
+            )}
+          </li>
           <li>
             <Link>Contact</Link>
           </li>

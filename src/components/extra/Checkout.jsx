@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import Swal from "sweetalert2";
 import { Link, useLoaderData } from "react-router-dom";
+import { DataProvider } from "../Providers/AuthProvider";
 
 const Checkout = () => {
   const service = useLoaderData();
-  const { _id, img, description, title, price } = service;
+  const {user} = useContext(DataProvider)
+  console.log(user);
+  const { _id, img, description, title, price, service_id } = service;
 
-  //   console.log(service);
+  // console.log(service);
   const handleOrder = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,13 +19,37 @@ const Checkout = () => {
     const amount = form.amount.value;
 
     const order = {
+      service_id: _id,
       customerName: name,
       email,
+      img,
+      service_title : title,
       date,
       payingAmount: amount,
+      service_price: price,
     };
 
     console.log(order);
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your order has been placed",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          form.reset();
+        }
+      });
   };
 
   return (
@@ -65,6 +93,7 @@ const Checkout = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                defaultValue={user ? user.email : 'your mail'}
               />
             </div>
             <div className="form-control">
@@ -81,6 +110,7 @@ const Checkout = () => {
                 type="text"
                 name="amount"
                 placeholder="00"
+                defaultValue={price}
                 className="input input-bordered"
               />
             </div>
