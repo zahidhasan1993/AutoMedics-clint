@@ -3,6 +3,7 @@ import Lottie from "react-lottie";
 import loginLottie from "../../assets/lottie/142230-login.json";
 import { Link } from "react-router-dom";
 import { DataProvider } from "../Providers/AuthProvider";
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -27,7 +28,9 @@ const Login = () => {
     userSignIn(email,password)
     .then(result => {
       // console.log(result.user);
+      toast('Login Successful')
       form.reset()
+
 
     })
     .catch(err => {
