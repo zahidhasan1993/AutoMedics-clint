@@ -1,8 +1,8 @@
 import React from "react";
 
-const OrderTableRow = ({ data , handleDelete }) => {
+const OrderTableRow = ({ data , handleConfirm , handleDelete }) => {
   //   console.log(data);
-  const { _id,img, payingAmount, service_price, service_title, date, email } = data;
+  const { _id,img, payingAmount, service_price, service_title, date, email,status } = data;
 
   const dueAmount = Number(service_price) - Number(payingAmount);
 
@@ -43,6 +43,11 @@ const OrderTableRow = ({ data , handleDelete }) => {
             />
           </svg>
         </button>
+      </th>
+      <th>
+       {
+        status ? <span className="text-orange-700 font-bold">{status}</span> : <button className="btn bg-orange-700 hover:bg-orange-500" onClick={() => handleConfirm(_id)}>Confirm</button>
+       }
       </th>
     </tr>
   );

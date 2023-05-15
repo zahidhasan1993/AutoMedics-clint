@@ -43,6 +43,43 @@ const Orders = () => {
     });
   };
 
+  const handleConfirm = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/orders/${id}`,{
+          method: "PATCH",
+          headers:{
+            "Content-Type": "application/json"
+
+          },
+          body: JSON.stringify({status : "Confirmed"})
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          if (data.acknowledged) {
+            const remaining = orders.filter(order => order._id !== id);
+            const updated = orders.find(order => order._id === id);
+
+            updated.status ='Confirmed';
+
+            const newOrders = [updated,...remaining];
+
+            setOrders(newOrders)
+          }
+        })
+      }
+    });
+  }
+
   // console.log(orders);
 
   return (
@@ -75,6 +112,9 @@ const Orders = () => {
               <th>
                 Delete Order
               </th>
+              <th>
+                Confirm Order
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -83,6 +123,7 @@ const Orders = () => {
                 key={order._id}
                 data={order}
                 handleDelete={handleDelete}
+                handleConfirm={handleConfirm}
               ></OrderTableRow>
             ))}
           </tbody>
