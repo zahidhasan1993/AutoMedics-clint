@@ -1,13 +1,20 @@
 import React, { useContext } from "react";
 import Lottie from "react-lottie";
 import loginLottie from "../../assets/lottie/142230-login.json";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { DataProvider } from "../Providers/AuthProvider";
 
 const Login = () => {
 
   const {userSignIn,user} = useContext(DataProvider);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || '/';
+
+
+
   // console.log(user);
   const defaultOptions = {
     loop: true,
@@ -35,7 +42,8 @@ const Login = () => {
         showConfirmButton: false,
         timer: 1500
       })
-      form.reset()
+      form.reset();
+      navigate(from, {replace: true });
 
 
     })
