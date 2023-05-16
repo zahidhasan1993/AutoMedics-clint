@@ -30,11 +30,15 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
 
+
     // console.log(email,password);
 
     userSignIn(email,password)
     .then(result => {
       // console.log(result.user);
+      const loggedUser = {
+        email : result.user.email
+      }
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -43,6 +47,22 @@ const Login = () => {
         timer: 1500
       })
       form.reset();
+      
+      fetch('http://localhost:5000/token',{
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(loggedUser)
+
+      })
+      .then(res => res.json())
+      .then(data => {
+        const token = data.token;
+
+        localStorage.setItem('user-access-token', token);
+        
+      })
       navigate(from, {replace: true });
 
 

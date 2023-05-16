@@ -46,7 +46,7 @@ const OrderTableRow = ({ data , handleConfirm , handleDelete }) => {
       </th>
       <th>
        {
-        status ? <span className="text-orange-700 font-bold">{status}</span> : <button className="btn bg-orange-700 hover:bg-orange-500" onClick={() => handleConfirm(_id)}>Confirm</button>
+        status ? <span className="text-orange-700 font-bold">{status}</span> : <button className="btn bg-orange-700 hover:bg-orange-500" onClick={() => handleConfirm(_id)}>Confirm Order</button>
        }
       </th>
     </tr>
