@@ -106,7 +106,7 @@ const Navbar = () => {
           <FaSearch className="mr-5"></FaSearch>
         </Link>
 
-        <Link className="btn btn-outline text-orange-700 hover:bg-orange-600 hover:text-white">
+        <Link className="btn btn-outline text-orange-700 hover:bg-orange-600 hover:text-white hover:border-none">
           Appointment
         </Link>
       </div>

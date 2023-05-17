@@ -36,7 +36,7 @@ const ServiceDetails = () => {
             <p>{description}</p>
             <p className="text-orange-700">Price : ${price}</p>
             <div className="card-actions justify-end">
-              <Link to={`/checkout/${_id}`} className="btn btn-outline text-orange-700 hover:bg-orange-500 hover:text-white">Check Out</Link>
+              <Link to={`/checkout/${_id}`} className="btn btn-outline text-orange-700 hover:bg-orange-500 hover:border-none hover:text-white">Check Out</Link>
             </div>
           </div>
         </div>

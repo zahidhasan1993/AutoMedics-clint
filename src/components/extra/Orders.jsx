@@ -12,7 +12,13 @@ const Orders = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`)
+    fetch(`http://localhost:5000/orders?email=${user?.email}`,{
+      method: 'GET',
+      headers: {
+        "Content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('user-access-token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setOrders(data));
   }, []);
