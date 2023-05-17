@@ -10,7 +10,8 @@ const Footer = () => {
         <p>
           AutoMedics Industries Ltd.
           <br />
-          Providing reliable car repiring since 1992
+          Providing reliable car repiring since 1992 <br />
+          All Rights Reserved By Z@hid
         </p>
       </div>
       <div>

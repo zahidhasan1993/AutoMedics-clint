@@ -8,7 +8,7 @@ const About = () => {
         <div className="">
           <img
             src={img1}
-            className="max-w-sm rounded-lg shadow-2xl w-[28rem]"
+            className="md:max-w-sm rounded-lg shadow-2xl md:w-[28rem]"
           />
           <img
             src={img2}
