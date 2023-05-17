@@ -14,7 +14,7 @@ const Header = () => {
           src={pic1}
           className="w-full"
         />
-        <div className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] w-full">
+        <div className="absolute left-0 top-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] w-full p-7 md:p-0">
             <div className="md:pl-24 md:pt-24">
             <h1 className="text-6xl text-white font-bold">
             Affordable <br /> Price For Car <br /> Servicing

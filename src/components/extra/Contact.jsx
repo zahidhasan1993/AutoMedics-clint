@@ -4,7 +4,7 @@ import { FcCalendar, FcCallback, FcMindMap } from "react-icons/fc";
 
 const Contact = () => {
   return (
-    <div className="bg-black text-white md:h-64 mt-28 rounded md:flex gap-16 justify-center items-center mb-14">
+    <div className="bg-black text-white md:h-64 mt-28 rounded md:flex gap-16 justify-center items-center mb-14 p-8 md:p-0">
       <div className="md:flex gap-5">
         <div>
           <FcCalendar className="text-5xl"></FcCalendar>

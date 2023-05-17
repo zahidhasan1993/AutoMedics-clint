@@ -94,10 +94,10 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link>
+        <Link className="hidden md:block">
           <FaShoppingBag className="mr-5"></FaShoppingBag>
         </Link>
-        <Link>
+        <Link className="hidden md:block">
           <FaSearch className="mr-5"></FaSearch>
         </Link>
 

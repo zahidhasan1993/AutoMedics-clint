@@ -37,7 +37,7 @@ const routes = createBrowserRouter([
         path: "survicedetails/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(`https://automedics-server.vercel.app/services/${params.id}`),
       },
       {
         path: "checkout/:id",
@@ -47,7 +47,7 @@ const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(`https://automedics-server.vercel.app/services/${params.id}`),
       },
       {
         path: "orders",

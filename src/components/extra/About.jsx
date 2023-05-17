@@ -12,7 +12,7 @@ const About = () => {
           />
           <img
             src={img2}
-            className="max-w-sm rounded-lg shadow-2xl w-[20rem] lg:absolute lg:-bottom-20 lg:left-[22rem]"
+            className="max-w-sm rounded-lg shadow-2xl w-[20rem] lg:absolute lg:-bottom-20 lg:left-[22rem] hidden md:block"
           />
         </div>
         <div className="lg:pl-36 ">

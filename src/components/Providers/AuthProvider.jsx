@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
         const loggedUser = {
           email : currentUser.email,
         }
-        fetch('http://localhost:5000/token',{
+        fetch('https://automedics-server.vercel.app/token',{
         method: "POST",
         headers: {
           "Content-type": "application/json"

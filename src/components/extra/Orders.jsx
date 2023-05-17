@@ -13,7 +13,7 @@ const Orders = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+    fetch(`https://automedics-server.vercel.app/orders?email=${user?.email}`, {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -41,7 +41,7 @@ const Orders = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://automedics-server.vercel.app/orders/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -67,7 +67,7 @@ const Orders = () => {
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/orders/${id}`, {
+        fetch(`https://automedics-server.vercel.app/orders/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
