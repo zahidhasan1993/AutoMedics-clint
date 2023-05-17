@@ -5,10 +5,12 @@ import OrderTableRow from "./OrderTableRow";
 import Swal from "sweetalert2";
 
 import { data } from "autoprefixer";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  const { user } = useContext(DataProvider);
+  const { user,logout } = useContext(DataProvider);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -20,7 +22,14 @@ const Orders = () => {
       }
     })
       .then((res) => res.json())
-      .then((data) => setOrders(data));
+      .then((data) =>{
+        if (!data.error) {
+          setOrders(data);
+        }
+        navigate('/')
+        logout()
+      }
+      );
   }, []);
   const handleDelete = (id) => {
     // console.log(id);
