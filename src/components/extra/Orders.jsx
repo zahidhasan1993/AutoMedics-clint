@@ -9,27 +9,25 @@ import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  const { user,logout } = useContext(DataProvider);
+  const { user, logout } = useContext(DataProvider);
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`,{
-      method: 'GET',
+    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+      method: "GET",
       headers: {
         "Content-type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('user-access-token')}`
-      }
+        authorization: `Bearer ${localStorage.getItem("user-access-token")}`,
+      },
     })
       .then((res) => res.json())
-      .then((data) =>{
-        if (!data.error) {
-          setOrders(data);
+      .then((data) => {
+        if (data.error) {
+          navigate("/");
+          logout();
         }
-        navigate('/')
-        logout()
-      }
-      );
+        setOrders(data);
+      });
   }, []);
   const handleDelete = (id) => {
     // console.log(id);
@@ -49,9 +47,9 @@ const Orders = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.acknowledged) {
-              const remaining = orders.filter(order => order._id !== id);
+              const remaining = orders.filter((order) => order._id !== id);
               // console.log(remaining);
-              setOrders(remaining)
+              setOrders(remaining);
             }
           });
       }
@@ -69,31 +67,30 @@ const Orders = () => {
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/orders/${id}`,{
+        fetch(`http://localhost:5000/orders/${id}`, {
           method: "PATCH",
-          headers:{
-            "Content-Type": "application/json"
-
+          headers: {
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify({status : "Confirmed"})
+          body: JSON.stringify({ status: "Confirmed" }),
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          if (data.acknowledged) {
-            const remaining = orders.filter(order => order._id !== id);
-            const updated = orders.find(order => order._id === id);
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.acknowledged) {
+              const remaining = orders.filter((order) => order._id !== id);
+              const updated = orders.find((order) => order._id === id);
 
-            updated.status ='Confirmed';
+              updated.status = "Confirmed";
 
-            const newOrders = [updated,...remaining];
+              const newOrders = [updated, ...remaining];
 
-            setOrders(newOrders)
-          }
-        })
+              setOrders(newOrders);
+            }
+          });
       }
     });
-  }
+  };
 
   // console.log(orders);
 
@@ -119,17 +116,12 @@ const Orders = () => {
           {/* head */}
           <thead>
             <tr>
-              
               <th>Service Name</th>
               <th>paying Amount</th>
               <th>Due Amount</th>
               <th>Date</th>
-              <th>
-                Delete Order
-              </th>
-              <th>
-                Confirm Order
-              </th>
+              <th>Delete Order</th>
+              <th>Confirm Order</th>
             </tr>
           </thead>
           <tbody>

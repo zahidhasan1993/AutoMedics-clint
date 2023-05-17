@@ -9,6 +9,7 @@ import ServiceDetails from "../extra/ServiceDetails";
 import Checkout from "../extra/Checkout";
 import Orders from "../extra/Orders";
 import PrivateRoute from "./PrivateRoute";
+import About2 from "../extra/About2";
 
 const routes = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const routes = createBrowserRouter([
       {
         path: "register",
         element: <Register></Register>,
+      },
+      {
+        path: 'about',
+        element:<About2></About2>
       },
       {
         path: "survicedetails/:id",

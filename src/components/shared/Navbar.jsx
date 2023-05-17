@@ -10,10 +10,9 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout()
-      .then(result => {
-        localStorage.removeItem('user-access-token');
-      }
-      )
+      .then((result) => {
+        localStorage.removeItem("user-access-token");
+      })
       .catch((err) => {
         console.log(err.message);
       });
@@ -48,23 +47,21 @@ const Navbar = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link>About</Link>
+              <Link to="/about">About</Link>
             </li>
+
             <li>
-              <Link>Services</Link>
+              <Link>Contact</Link>
             </li>
             <li>
               {user ? (
                 <>
-                  <Link onClick={handleLogout}>Logout</Link>
                   <Link to="/orders">Orders</Link>
+                  <Link onClick={handleLogout}>Logout</Link>
                 </>
               ) : (
                 <Link to="/login">Login</Link>
               )}
-            </li>
-            <li>
-              <Link>Contact</Link>
             </li>
           </ul>
         </div>
@@ -78,23 +75,21 @@ const Navbar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link>About</Link>
+            <Link to="/about">About</Link>
           </li>
+
           <li>
-            <Link>Services</Link>
+            <Link>Contact</Link>
           </li>
           <li>
             {user ? (
               <>
-                <Link onClick={handleLogout}>Logout</Link>
                 <Link to="/orders">Orders</Link>
+                <Link onClick={handleLogout}>Logout</Link>
               </>
             ) : (
               <Link to="/login">Login</Link>
             )}
-          </li>
-          <li>
-            <Link>Contact</Link>
           </li>
         </ul>
       </div>
