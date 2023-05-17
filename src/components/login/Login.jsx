@@ -4,6 +4,7 @@ import loginLottie from "../../assets/lottie/142230-login.json";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import { DataProvider } from "../Providers/AuthProvider";
+import SocialLogin from "../shared/SocialLogin";
 
 const Login = () => {
 
@@ -36,9 +37,6 @@ const Login = () => {
     userSignIn(email,password)
     .then(result => {
       // console.log(result.user);
-      const loggedUser = {
-        email : result.user.email
-      }
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -47,35 +45,21 @@ const Login = () => {
         timer: 1500
       })
       form.reset();
-      
-      fetch('http://localhost:5000/token',{
-        method: "POST",
-        headers: {
-          "Content-type": "application/json"
-        },
-        body: JSON.stringify(loggedUser)
-
-      })
-      .then(res => res.json())
-      .then(data => {
-        const token = data.token;
-
-        localStorage.setItem('user-access-token', token);
-        
-      })
       navigate(from, {replace: true });
 
 
     })
     .catch(err => {
       console.log(err.message);
-      Swal.fire({
-        position: 'top-end',
-        icon: 'error',
-        title: err.message,
-        showConfirmButton: false,
-        timer: 1500
-      })
+      if (err.message) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: err.message,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
 
     })
   }
@@ -129,7 +113,9 @@ const Login = () => {
                 Register Here....
               </Link>
             </h1>
+            
           </form>
+          <SocialLogin></SocialLogin>
         </div>
       </div>
     </div>
